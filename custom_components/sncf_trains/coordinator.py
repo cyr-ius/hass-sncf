@@ -1,8 +1,8 @@
 """Data Update Coordinator."""
 
-import logging
 from datetime import timedelta
 from itertools import count
+import logging
 from typing import Any
 
 from homeassistant.config_entries import ConfigEntry
@@ -23,6 +23,7 @@ from .const import (
     CONF_UPDATE_INTERVAL,
     DEFAULT_OUTSIDE_INTERVAL,
     DEFAULT_UPDATE_INTERVAL,
+    DOMAIN,
 )
 
 _LOGGER = logging.getLogger(__name__)
@@ -45,7 +46,7 @@ class SncfUpdateCoordinator(DataUpdateCoordinator):
         super().__init__(
             hass,
             _LOGGER,
-            name="SNCF Train Journeys",
+            name=DOMAIN,
             update_interval=timedelta(minutes=self.update_interval_minutes),
         )
 
@@ -145,7 +146,6 @@ class SncfUpdateCoordinator(DataUpdateCoordinator):
                 _LOGGER.error("Aucune donnée reçue de l'API SNCF pour le trajet ")
                 continue
 
-            i = count(0)
             trains.update(
                 {
                     id: [

@@ -3,7 +3,7 @@ from __future__ import annotations
 from typing import Any
 from homeassistant.core import HomeAssistant
 from homeassistant.config_entries import ConfigEntry
-from homeassistant.helpers.dumps import async_redact_data
+from homeassistant.helpers.redact import async_redact_data
 from .const import DOMAIN, CONF_API_KEY
 
 TO_REDACT = {CONF_API_KEY}
